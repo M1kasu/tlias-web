@@ -14,4 +14,9 @@ public interface DeptMapper {
     @Select("select * from dept")
     public List<Dept> findAll();
 
+    /**
+     * 根据id删除部门
+     */
+    @Select("delete from dept where id = #{id}")
+    void deleteById(Integer id);
 }

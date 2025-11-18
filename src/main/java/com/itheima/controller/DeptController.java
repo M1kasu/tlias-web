@@ -48,5 +48,17 @@ public class DeptController {
         return Result.success();
     }
 
+    /**
+     * 根据ID查询部门 GET http://localhost:8080/depts/1
+     * 路径参数：通过请求URL直接传递参数，使用{…}来标识该路径参数，需要使用 @PathVariable获取路径参数。
+     * 如果路径参数名与controller方法形参名称一致，@PathVariable注解的value属性是可以省略的。
+     */
+    @GetMapping("/depts/{id}")
+    public Result get(@PathVariable Integer id){
+        System.out.println("查询部门, id=" + id);
+        Dept dept = deptService.getById(id);
+        return Result.success(dept);
+    }
+
 
 }

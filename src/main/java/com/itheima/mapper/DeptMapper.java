@@ -28,4 +28,11 @@ public interface DeptMapper {
     void add(Dept dept);
 
 
+    /**
+     * 根据id查询部门
+     */
+    @Select("select * from dept where id = #{id}")
+    Dept getById(Integer id);
+
+
 }

@@ -60,5 +60,17 @@ public class DeptController {
         return Result.success(dept);
     }
 
+    /**
+     * 修改部门 PUT http://localhost:8080/depts
+     * - JSON格式的参数，通常会使用一个实体对象进行接收 。
+     * - 规则：JSON数据的键名与方法形参对象的属性名相同，并需要使用@RequestBody注解标识。
+     */
+    @PutMapping("/depts")
+    public Result update(@RequestBody Dept dept){
+        System.out.println("修改部门, dept=" + dept);
+        deptService.update(dept);
+        return Result.success();
+    }
+
 
 }

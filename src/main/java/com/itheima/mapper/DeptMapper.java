@@ -35,4 +35,9 @@ public interface DeptMapper {
     Dept getById(Integer id);
 
 
+    /**
+     * 修改部门
+     */
+    @Insert("update dept set name = #{name}, update_time = #{updateTime} where id = #{id}")
+    void update(Dept dept);
 }

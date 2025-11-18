@@ -35,4 +35,17 @@ public class DeptController {
         deptService.deleteById(id);
         return Result.success();
     }
+
+    /**
+     * 新增部门 POST http://localhost:8080/depts
+     * - JSON格式的参数，通常会使用一个实体对象进行接收 。
+     * - 规则：JSON数据的键名与方法形参对象的属性名相同，并需要使用@RequestBody注解标识。
+     */
+    @PostMapping("/depts")
+    public Result add(@RequestBody Dept dept){
+        System.out.println("新增部门, dept=" + dept);
+        deptService.add(dept);
+        return Result.success();
+    }
+
 }

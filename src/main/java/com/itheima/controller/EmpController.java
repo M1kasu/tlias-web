@@ -59,7 +59,7 @@ public class EmpController {
     @PostMapping
     public Result save(@RequestBody Emp emp){
         log.info("保存员工信息：{}", emp);
-        empService.insert(emp);
+        empService.save(emp);
         return Result.success();
     }
 

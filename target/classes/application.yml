@@ -17,3 +17,8 @@ pagehelper:
 #  当该参数设置为true时，pageNum<=0时会查询第一页，pageNum>pages（超过总数时），会查询最后一页。默认false 时，直接根据参数进行查询。
   reasonable: true
   helper-dialect: mysql
+
+#spring事务管理日志，开启事务管理日志，这样就可以在控制看到和事务相关的日志信息了
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug

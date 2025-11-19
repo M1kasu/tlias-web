@@ -31,5 +31,5 @@ public interface EmpService {
      * 保存员工基本信息
      * @param emp
      */
-    void insert(Emp emp);
+    void save(Emp emp);
 }

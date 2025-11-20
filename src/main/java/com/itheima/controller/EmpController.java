@@ -71,13 +71,41 @@ public class EmpController {
      *   - 请求参数：员工id
      *   - 响应数据：Json格式数据
      */
-
     @DeleteMapping
     public Result delete(@RequestParam List<Integer> ids){
         log.info("批量删除员工信息：ids={}", ids);
         empService.deleteByIds(ids);
         return Result.success();
     }
+
+    /**
+     * 根据id查询员工信息和工作经历信息
+     *   - 请求路径：/emps/{id}
+     *   - 请求方式：GET
+     *   - 请求参数：员工id
+     *   - 响应数据：Json格式数据
+     */
+    @GetMapping("/{id}")
+    public Result getInfo(@PathVariable Integer id){
+        log.info("查询员工信息：id={}", id);
+        Emp emp = empService.getInfo(id);
+        return Result.success(emp);
+    }
+
+    /**
+     * 修改员工
+     *   - 请求路径：/emps
+     *   - 请求方式：PUT
+     *   - 请求参数：Json格式数据
+     *   - 响应数据：Json格式数据
+     */
+    @PutMapping
+    public Result update(@RequestBody Emp emp){
+        log.info("修改员工信息：{}", emp);
+        empService.update(emp);
+        return Result.success();
+    }
+
 
 
 

@@ -52,4 +52,13 @@ public interface EmpMapper {
     void deleteByIds(List<Integer> ids);
 
 
+    /**
+     * 根据员工ID查询员工信息
+     */
+    Emp getById(Integer id);
+
+    /**
+     * 修改员工基本信息
+     */
+    void updateById(Emp emp);
 }

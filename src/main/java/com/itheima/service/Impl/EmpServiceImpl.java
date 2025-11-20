@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -152,6 +153,31 @@ public class EmpServiceImpl implements EmpService {
 
         //2. 根据员工的ID批量删除员工的工作经历信息
         empExprMapper.deleteByEmpIds(ids);
+    }
+
+    @Override
+    public Emp getInfo(Integer id) {
+        return empMapper.getById(id);
+    }
+
+    @Override
+    public void update(Emp emp) {
+        //根据id修改员工基本信息
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.updateById(emp);
+
+        //2. 根据员工ID删除员工的工作经历信息 【删除老的】
+//        这个方法的形参是一个Integer的集合，所以我们可以使用一个数组工具类中的一个方法，也就是asList(参数 数组名) ，
+//        这个作用就是将数组变为一个集合，这样就可以调用这个方法了
+        empExprMapper.deleteByEmpIds(Arrays.asList(emp.getId()));
+
+        //3、根据id修改员工工作经历信息【新增新的】
+        Integer empId = emp.getId();
+        List<EmpExpr> exprList = emp.getExprList();
+        if(!CollectionUtils.isEmpty(exprList)){
+            exprList.forEach(empExpr -> empExpr.setEmpId(empId));
+            empExprMapper.insertBatch(exprList);
+        }
     }
 
 

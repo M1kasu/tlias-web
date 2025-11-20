@@ -2,12 +2,10 @@ package com.itheima.mapper;
 
 import com.itheima.pojo.Emp;
 import com.itheima.pojo.EmpQueryParam;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface EmpMapper {
@@ -61,4 +59,16 @@ public interface EmpMapper {
      * 修改员工基本信息
      */
     void updateById(Emp emp);
+
+    /**
+     * 统计各个职位的员工人数
+     */
+    @MapKey("pos")
+    List<Map<String,Object>> countEmpJobData();
+
+    /**
+     * 统计各个性别的员工人数
+     */
+    @MapKey("name")
+    List<Map> countEmpGenderData();
 }

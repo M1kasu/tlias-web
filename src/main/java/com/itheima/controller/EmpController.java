@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 员工管理
@@ -60,6 +61,21 @@ public class EmpController {
     public Result save(@RequestBody Emp emp){
         log.info("保存员工信息：{}", emp);
         empService.save(emp);
+        return Result.success();
+    }
+
+    /**
+     * 员工删除
+     *   - 请求路径：/emps?ids=1,2,3
+     *   - 请求方式：DELETE
+     *   - 请求参数：员工id
+     *   - 响应数据：Json格式数据
+     */
+
+    @DeleteMapping
+    public Result delete(@RequestParam List<Integer> ids){
+        log.info("批量删除员工信息：ids={}", ids);
+        empService.deleteByIds(ids);
         return Result.success();
     }
 
